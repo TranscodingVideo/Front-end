@@ -3,3 +3,7 @@ venv
 *.iml
 
 __pycache__/
+
+\.vscode/
+
+\.env
