@@ -1,12 +1,12 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 import boto3
-from config import S3_BUCKET,S3_KEY,S3_SECRET
+from config import S3_BUCKET,S3_KEY,S3_SECRET_ACCESS_KEY
 
 s3_resource = boto3.resource(
     "s3",
     aws_access_key_id=S3_KEY,
-    aws_secret_access_key=S3_SECRET
+    aws_secret_access_key=S3_SECRET_ACCESS_KEY
 )
 
 app = Flask(__name__)
