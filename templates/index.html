@@ -2,11 +2,20 @@
 {% block title %}This is an example page{% endblock %}
 
 {% block navbar %}
-<div class="navbar navbar-fixed-top">
-  <!-- ... -->
-</div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Video Transcoder</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/files">Upload to Transcode</a></li>
+                <li><a href="/download">Download</a></li>
+            </ul>
+        </div>
+    </nav>
 {% endblock %}
 
 {% block content %}
-  <h1>Hello, Bootstrap</h1>
+    <h1>Video Transcoder</h1>
 {% endblock %}
