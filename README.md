@@ -17,6 +17,10 @@
 ## If .env doesnt work
 * export FLASK_APP=app.py
 * export FLASK_ENV=development
+* export S3_BUCKET=<bucket name>
+* export S3_BUCKET2=<bucket 2 name>
+* export S3_KEY=<access key>
+* export S3_SECRET_ACCESS_KEY=<secret>
 
 ## To Run the server
 * flask run
