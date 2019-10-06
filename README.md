@@ -5,7 +5,7 @@
 * source venv/bin/activate
 
 ## Dependencies to install in virtual environment
-* pip install -r requirements.txt*
+* pip install -r requirements.txt
 ## Configuring AWS
 * aws configure
 
