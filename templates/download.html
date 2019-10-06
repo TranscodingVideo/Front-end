@@ -59,7 +59,7 @@ S3 Download
                                 <input type="hidden" name="key" value="{{ f.key }}">
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                             </form>
-                            <form class="form-delete" action="{{ url_for('download2') }}" method="POST">
+                            <form class="form-download" action="{{ url_for('download2') }}" method="POST">
                                 <input type="hidden" name="key" value="{{ f.key }}">
                                 <button type="submit" class="btn btn-default btn-sm">Download</button>
                             </form>
