@@ -5,12 +5,7 @@
 * source venv/bin/activate
 
 ## Dependencies to install in virtual environment
-* pip install flask
-* pip install flask-bootstrap
-* pip install boto3 
-* pip install awscli
-* pip install arrow
-
+* pip install -r requirements.txt*
 ## Configuring AWS
 * aws configure
 
