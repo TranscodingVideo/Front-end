@@ -91,9 +91,7 @@ def delete2():
 
     #Deletes the object from the bucket using the key
     my_bucket.Object(key).delete()
-
-    flash('File Deleted')
-    return redirect(url_for('uploadPage'))
+    return redirect(url_for('download'))
 
 @app.route('/download2', methods=['POST'])
 def download2():
