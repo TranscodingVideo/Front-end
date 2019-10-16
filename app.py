@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect, flash, Response
+from flask import Flask, render_template, request, url_for, redirect, flash, Response, jsonify
 from flask_bootstrap import Bootstrap
 import boto3
 from config import S3_BUCKET,S3_BUCKET2,S3_KEY,S3_SECRET_ACCESS_KEY
@@ -52,7 +52,7 @@ def upload():
     my_bucket.Object(file.filename).put(Body=file)
 
     flash('File Uploaded')
-    return redirect(url_for('files'))
+    return redirect(url_for('uploadPage'))
 
 @app.route('/delete', methods=['POST'])
 def delete():
@@ -65,7 +65,7 @@ def delete():
     my_bucket.Object(key).delete()
 
     flash('File Deleted')
-    return redirect(url_for('files'))
+    return redirect(url_for('upload'))
 
 @app.route('/download', methods=['POST'])
 def download():
@@ -93,7 +93,7 @@ def delete2():
     my_bucket.Object(key).delete()
 
     flash('File Deleted')
-    return redirect(url_for('files'))
+    return redirect(url_for('uploadPage'))
 
 @app.route('/download2', methods=['POST'])
 def download2():
@@ -109,7 +109,16 @@ def download2():
         mimetype='text/plain',
         headers={"Content-Disposition": "attachment;filename={}".format(key)}
     )
+@app.route('/callAPI', methods=['POST','GET'])
+def callAPI():
+    API_ENDPOINT = ""
+    API_KEY = "OMG3yshyiY3PuuxQXeBqlaXfKEIHzIm153kJHNAN"
+    formKey = request.form['key']
+    formEmail = request.form['email']
 
+    information = jsonify({'key':formKey,'email':formEmail})
+    flash('File is transcoding, an email notification email will be sent out when file is ready')    
+    return redirect(url_for('uploadPage'))
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=80)
