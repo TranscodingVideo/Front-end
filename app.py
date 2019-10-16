@@ -19,7 +19,7 @@ app.jinja_env.filters['timeformat'] = timeformat
 app.jinja_env.filters['file_type'] = file_type
 
 @app.route('/')
-def files():
+def uploadPage():
     s3_resource = boto3.resource('s3')
     # makes a bucket variable that grabs the bucket 
     # information from the specified bucket
@@ -27,7 +27,7 @@ def files():
 
     # grabs all the summaries (contents) of the s3 bucket
     summaries = my_bucket.objects.all()
-    return render_template('files.html', my_bucket=my_bucket, files=summaries)
+    return render_template('upload.html', my_bucket=my_bucket, files=summaries)
 
 @app.route('/download')
 def downloadPage():
