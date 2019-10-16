@@ -31,7 +31,15 @@ S3 Download
             <div class = "col-12-xs">
                 <h3>Download transcoded files</h3>
                 <hr>
-
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <p class="bg-info" style="padding: 15px">
+                            {% for message in messages %}
+                                {{ message }}<br>
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                {% endwith %}
                 <table class="table table-striped">
                     <tr>
                         <th>Name</th>
