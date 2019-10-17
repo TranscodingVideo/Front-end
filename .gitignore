@@ -1,6 +1,7 @@
 venv
 *.xml
 *.iml
+*.pyc
 
 __pycache__/
 
