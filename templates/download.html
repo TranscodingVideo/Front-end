@@ -1,46 +1,56 @@
-{% extends "bootstrap/base.html" %}
-{% block html_attribs %} lang="en"{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block head %}
-    {{super()}}
+<head>
+    <title>{% block title %}{% endblock %} - S3 Download</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="/static/stylesheets.css">
-{% endblock %}
+    <link rel="stylesheet" href="/static/ani.css">
 
-{% block title %}
-S3 Download
-{% endblock %}
+</head>
 
 
 {% block navbar %}
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand">Video Transcoder</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="/">Upload to Transcode</a></li>
-                <li class="active"><a href="/download">Ready to Download</a></li>
-            </ul>
-        </div>
-    </nav>
+<nav class="nav animated fadeIn delay-1s">
+    <div class="">
+        <h2><a class="">Video Transcoder</a></h2>
+    </div>
+    <div>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <button onclick="location.href='/';">Upload to Transcode</button>
+                    </td>
+                    <td>
+                        <button onclick="location.href='/download';">Ready to Download</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</nav>
 {% endblock %}
 
 {% block content %}
-    <div class = "container">
-        <div class = "row">
-            <div class = "col-12-xs">
-                <h3>Download transcoded files</h3>
-                <hr>
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        <p class="bg-info" style="padding: 15px">
-                            {% for message in messages %}
-                                {{ message }}<br>
-                            {% endfor %}
-                        </p>
-                    {% endif %}
-                {% endwith %}
-                <table class="table table-striped">
+<div class="animated fadeIn delay-05s background-obj" style="width: 20vw;"></div>
+<div class="content animated fadeIn delay-1s">
+    <div class="upload-form">
+        <h3>Download transcoded files</h3>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <p class="bg-info" style="padding: 15px">
+            {% for message in messages %}
+            {{ message }}<br>
+            {% endfor %}
+        </p>
+        {% endif %}
+        {% endwith %}
+        <div class="trance-list" style="margin-left: 0;">
+            <table>
+                <tbody>
                     <tr>
                         <th>Name</th>
                         <th>Last Modified</th>
@@ -57,14 +67,17 @@ S3 Download
                                 <input type="hidden" name="key" value="{{ f.key }}">
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                             </form>
+                        </td>
+                        <td>
                             <form class="form-download" action="{{ url_for('download2') }}" method="POST">
                                 <input type="hidden" name="key" value="{{ f.key }}">
-                                <button type="submit" class="btn btn-default btn-sm">Download</button>
+                                <button class="download" type="submit" class="btn btn-default btn-sm">Download</button>
                             </form>
                         </td>
                     </tr>
                     {% endfor %}
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
-{% endblock %}
+    {% endblock %}

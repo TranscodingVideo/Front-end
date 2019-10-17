@@ -1,86 +1,98 @@
-{% extends "bootstrap/base.html" %}
-{% block html_attribs %} lang="en"{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block head %}
-    {{super()}}
+<head>
+    <title>{% block title %}{% endblock %} - S3 Upload</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="/static/stylesheets.css">
-{% endblock %}
+    <link rel="stylesheet" href="/static/ani.css">
 
-{% block title %}
-    S3 Upload
-{% endblock %}
+</head>
 
 {% block navbar %}
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand">Video Transcoder</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Upload to Transcode</a></li>
-                <li><a href="/download">Ready to Download</a></li>
-            </ul>
+    <nav class="nav animated fadeIn delay-1s">
+        <div class="">
+            <h2><a class="">Video Transcoder</a></h2>
+        </div>
+        <div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <button onclick="location.href='/';">Upload to Transcode</button>
+                        </td>
+                        <td>
+                            <button onclick="location.href='/download';">Ready to Download</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </nav>
 {% endblock %}
 
 {% block content %}
-    <div class = "container">
-        <div class = "row">
-            <div class = "col-12-xs">
-                <h3>Upload Files to Transcode</h3>
-
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        <p class="bg-info" style="padding: 15px">
-                            {% for message in messages %}
-                                {{ message }}<br>
-                            {% endfor %}
-                        </p>
-                    {% endif %}
-                {% endwith %}
-                <hr>
-
-                <form class="form-upload" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
-                    <label>Email: </label><input type="email" name="email" required="required">
-                    <p><input type="file" name="file" required="required"></p>
-                    <button type="submit" name="submit" class="btn btn-primary">Upload</button>
-                </form>
-                <hr>
-
-                <table class="table table-striped">
-                    <tr>
-                        <th>Name</th>
-                        <th>Last Modified</th>
-                        <th>Type</th>
-                        <th>Transcode</th>
-                        <th></th>
-                    </tr>
-                    {% for f in files %}
-                    <tr>
-                        <td>{{ f.key }}</td>
-                        <td>{{ f.last_modified | timeformat}}</td>
-                        <td>{{ f.key | file_type }}</td>
-                        <td>
-                            <form class="form-transcode" action="{{ url_for('callAPI') }}" method="POST">
-                                <input type="hidden" name="key" value="{{ f.key }}">
-                                <input type="email" name="email" required="required" placeholder="Email for notifications">
-                                <button type="submit" name="submit" class="btn btn-primary">Transcode</button>
-                            </form>
-                        </td>
-                        <td class="td-buttons">
-                            <form class="form-delete" action="{{ url_for('delete') }}" method="POST">
-                                <input type="hidden" name="key" value="{{ f.key }}">
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
-                            <form class="form-download" action="{{ url_for('download') }}" method="POST">
-                                <input type="hidden" name="key" value="{{ f.key }}">
-                                <button type="submit" class="btn btn-default btn-sm">Download</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-            </div>
+<div class="animated fadeIn delay-05s background-obj "></div>
+<div class="content animated fadeIn delay-1s">
+    <div class="upload-form">
+        <h3>Upload Files to Transcode</h3>
+        <div style="width:15em;">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <p class="bg-info" style="padding: 15px">
+                {% for message in messages %}
+                {{ message }}<br>
+                {% endfor %}
+            </p>
+            {% endif %}
+            {% endwith %}
         </div>
+        <hr>
+
+        <form class="form-upload" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+            <label>Email: </label><input type="email" name="email" required="required">
+            <p><input type="file" name="file" required="required" accept="video/*"></p>
+            <button class="upload" type="submit" name="submit" class="btn btn-primary">Upload</button>
+        </form>
+        <hr>
     </div>
+    <div class="trance-list">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Last Modified</th>
+                <th>Type</th>
+                <th>Transcode</th>
+                <th></th>
+            </tr>
+            {% for f in files %}
+            <tr>
+                <td>{{ f.key }}</td>
+                <td>{{ f.last_modified | timeformat}}</td>
+                <td>{{ f.key | file_type }}</td>
+                <td>
+                    <form class="form-transcode" action="{{ url_for('callAPI') }}" method="POST">
+                        <input type="hidden" name="key" value="{{ f.key }}">
+                        <input type="email" name="email" required="required" placeholder="Email for notifications">
+                        <button class="transcode" type="submit" name="submit" class="btn btn-primary">Transcode</button>
+                    </form>
+                </td>
+                <td class="td-buttons">
+                    <form class="form-delete" action="{{ url_for('delete') }}" method="POST">
+                        <input type="hidden" name="key" value="{{ f.key }}">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <form class="form-download" action="{{ url_for('download') }}" method="POST">
+                        <input type="hidden" name="key" value="{{ f.key }}">
+                        <button class="download" type="submit" class="btn btn-default btn-sm">Download</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+            </table>
+    </div>
+</div>
 {% endblock %}

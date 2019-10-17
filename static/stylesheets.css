@@ -1,3 +1,143 @@
-.td-buttons form{
-    display:inline-block;
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,800&display=swap');
+
+html {
+    font-family: 'Nunito', sans-serif;
+    background-color: #1b1d3d;
+    min-width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: rgb(231, 231, 231);
+}
+
+body {
+    margin: 0;
+}
+
+.nav {
+    width: 100vw;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.nav h2,
+table {
+    margin: 2em;
+}
+
+/* .nav button {
+    background-size: 200% 100%;
+    background-image: linear-gradient(to bottom right, rgb(253, 103, 66), rgb(124, 46, 27));
+    border-radius: 2em;
+    padding: .7em;
+    color: rgb(231, 231, 231);
+    border: none;
+    margin-left: .5em;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav button:hover {
+    background-position: 100% 0;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+} */
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+    z-index: -1;
+}
+
+.background-obj {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 40vw;
+    height: 100vh;
+    background-image: linear-gradient(rgb(253, 103, 66), rgb(124, 46, 27));
+    transform: skewX(-20deg);
+    transform-origin: top left;
+}
+
+.trance-list {
+    margin-left: 10em;
+}
+
+.trance-list table{
+    border-spacing: 1em;
+}
+.trance-list input {
+    border: none;
+    border-radius: 1em;
+    padding: .5em;
+}
+
+.upload-form input {
+    border: none;
+    border-radius: 1em;
+    padding: .5em;
+}
+
+/* .upload-form .button-class {
+    background-size: 200% 100%;
+    background-image: linear-gradient(to bottom right, #5a60aa, #1b1d3d);
+    border-radius: 2em;
+    padding: .7em;
+    color: rgb(231, 231, 231);
+    border: none;
+    margin-left: .5em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.upload-form .button-class:hover {
+    background-position: 100% 0;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+} */
+
+button {
+    background-size: 200% 100%;
+    background-image: linear-gradient(to bottom right, rgb(253, 103, 66), rgb(124, 46, 27));
+    border-radius: 2em;
+    padding: .7em;
+    color: rgb(231, 231, 231);
+    border: none;
+    margin-left: .5em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+button:hover {
+    background-position: 100% 0;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.download{
+    background-image: linear-gradient(to bottom right, rgb(66, 163, 253), rgb(27, 88, 124));
+}
+
+.transcode{
+    background-image: linear-gradient(to bottom right, rgb(52, 214, 73), rgb(26, 107, 39));
+}
+
+.upload{
+    background-image: linear-gradient(to bottom right, #5a60aa, #1b1d3d);
 }

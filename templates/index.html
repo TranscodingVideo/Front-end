@@ -1,8 +1,37 @@
-{% extends "bootstrap/base.html" %}
-{% block title %}This is an example page{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock %} - S3 Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/static/stylesheets.css">
+    <link rel="stylesheet" href="/static/ani.css">
+
+</head>
 
 {% block navbar %}
-    <nav class="navbar navbar-default">
+    <nav class="nav animated fadeIn delay-1s">
+        <div class="">
+            <h2><a class="">Video Transcoder</a></h2>
+        </div>
+        <div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <button onclick="location.href='/';">Upload to Transcode</button>
+                        </td>
+                        <td>
+                            <button onclick="location.href='/download';">Ready to Download</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </nav>
+
+    <!-- <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Video Transcoder</a>
@@ -13,7 +42,7 @@
                 <li><a href="/download">Download</a></li>
             </ul>
         </div>
-    </nav>
+    </nav> -->
 {% endblock %}
 
 {% block content %}
